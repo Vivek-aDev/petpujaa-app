@@ -1,0 +1,17 @@
+{
+  "name": "namastereact",
+  "version": "1.0.0",
+  "description": "This is NamasteReact by ",
+  "main": "App.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "(https://github.com/Vivek-aDev/NamasteReact.git)"
+  },
+  "keywords": [],
+  "author": "vivek-adev",
+  "license": "ISC"
+}
+ 
