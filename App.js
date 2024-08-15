@@ -1,11 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-//jsx (transpiled before it reaches the js) - PARCEL - Babel
+// React Element
+const heading = (
+  <h1 id="heading" tabIndex="7">
+    🧑‍💻 Namaste React using JSX
+  </h1>
+);
 
-//jsx => React.createElement => ReactElement-JS Object => HTMLElement(render)
-const jsxHeading = <h1 id="heading">🧑‍💻 Namaste React using JSX</h1>;
+// React Functional Component
+const HeadingComponent = () => (
+  <h1 className="heading">React Functional Component</h1>
+);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(jsxHeading);
+root.render(<HeadingComponent/>);
