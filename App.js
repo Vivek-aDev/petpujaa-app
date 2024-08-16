@@ -28,7 +28,8 @@ const styleResCard = {
 };
 
 const Restaurantcard = (props) => {
-  // console.table(props);
+  const {resName, cuisine, stars, eta} = props
+  console.log(resName);
 
   return (
     <div className="res-card" style={styleResCard}>
@@ -37,10 +38,10 @@ const Restaurantcard = (props) => {
         src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/d0450ce1a6ba19ea60cd724471ed54a8"
         alt=""
       />
-      <h3>{props.resName}</h3>
-      <h4>{props.cuisine}</h4>
-      <h4>{props.stars}</h4>
-      <h4>{props.eta}</h4>
+      <h3>{resName}</h3>
+      <h4>{cuisine}</h4>
+      <h4>{stars}</h4>
+      <h4>{eta}</h4>
     </div>
   );
 };
