@@ -28,8 +28,8 @@ const styleResCard = {
 };
 
 const Restaurantcard = (props) => {
-  const {resName, cuisine, stars, eta} = props
-  console.log(resName);
+  const { resData } = props;
+  // console.log(resName);
 
   return (
     <div className="res-card" style={styleResCard}>
@@ -38,12 +38,25 @@ const Restaurantcard = (props) => {
         src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/d0450ce1a6ba19ea60cd724471ed54a8"
         alt=""
       />
-      <h3>{resName}</h3>
-      <h4>{cuisine}</h4>
-      <h4>{stars}</h4>
-      <h4>{eta}</h4>
+      <h3>{resData.id}</h3>
+      <h4>{resData.title}</h4>
+      <h4>{resData.price}</h4>
+      <h4>{resData.rating.rate}</h4>
     </div>
   );
+};
+
+const resObj = {
+  id: 1,
+  title: "Onion Pizza",
+  price: 109.95,
+  description:
+    "the perfect test will blow your mind",
+  category: "food section",
+  rating: {
+    rate: 3.9,
+    count: 120,
+  },
 };
 
 const Body = () => {
@@ -51,18 +64,7 @@ const Body = () => {
     <div className="body">
       <div className="search">Search</div>
       <div className="res-container">
-        <Restaurantcard
-          resName="Maa Mangala Hotel"
-          cuisine="Veg thali, chicken thali, biriyani, papad"
-          stars="4.4⭐"
-          eta="10 minutes"
-        />
-        <Restaurantcard
-          resName="Food Villa"
-          cuisine="Biriyani, North Indian, Asian"
-          stars="3.4⭐"
-          eta="24 minutes"
-        />
+        <Restaurantcard resData={resObj} />
       </div>
     </div>
   );
