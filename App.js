@@ -23,18 +23,24 @@ const Header = () => {
   );
 };
 
-const styleResCard={
-  backgroundColor: '#f0f0f0'
-}
+const styleResCard = {
+  backgroundColor: "#f0f0f0",
+};
 
-const Restaurantcard = () => {
+const Restaurantcard = (props) => {
+  // console.table(props);
+
   return (
     <div className="res-card" style={styleResCard}>
-      <img className="res-logo" src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/d0450ce1a6ba19ea60cd724471ed54a8" alt="" />
-      <h3>Food Villa</h3>
-      <h4>Biriyani, North Indian, Asian</h4>
-      <h4>4.4 stars</h4>
-      <h4>20 minutes</h4>
+      <img
+        className="res-logo"
+        src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/d0450ce1a6ba19ea60cd724471ed54a8"
+        alt=""
+      />
+      <h3>{props.resName}</h3>
+      <h4>{props.cuisine}</h4>
+      <h4>{props.stars}</h4>
+      <h4>{props.eta}</h4>
     </div>
   );
 };
@@ -44,13 +50,18 @@ const Body = () => {
     <div className="body">
       <div className="search">Search</div>
       <div className="res-container">
-        <Restaurantcard />
-        <Restaurantcard />
-        <Restaurantcard />
-        <Restaurantcard />
-        <Restaurantcard />
-        <Restaurantcard />
-        <Restaurantcard />
+        <Restaurantcard
+          resName="Maa Mangala Hotel"
+          cuisine="Veg thali, chicken thali, biriyani, papad"
+          stars="4.4⭐"
+          eta="10 minutes"
+        />
+        <Restaurantcard
+          resName="Food Villa"
+          cuisine="Biriyani, North Indian, Asian"
+          stars="3.4⭐"
+          eta="24 minutes"
+        />
       </div>
     </div>
   );
@@ -60,11 +71,11 @@ const AppLayout = () => {
   return (
     <div className="app">
       <Header />
-      <Body/>
+      <Body />
     </div>
   );
 };
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<AppLayout/>);
+root.render(<AppLayout />);
