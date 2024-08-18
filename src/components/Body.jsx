@@ -1,6 +1,7 @@
 import Restaurantcard from "./Restaurantcard";
 
 import { useEffect, useState } from "react";
+import ShimmerUi from "./ShimerUi";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -17,9 +18,13 @@ const Body = () => {
 
     console.log(json);
     setListOfRestaurants(
-      json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
+
+  if (listOfRestaurants.length === 0) {
+    return <ShimmerUi/>
+  }
 
   return (
     <div className="body">
