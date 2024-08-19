@@ -1,7 +1,7 @@
 import Restaurantcard from "./Restaurantcard";
 
 import { useEffect, useState } from "react";
-import ShimmerUi from "./ShimerUi";
+import ShimmerUi from "./ShimmerUi";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -22,11 +22,9 @@ const Body = () => {
     );
   };
 
-  if (listOfRestaurants.length === 0) {
-    return <ShimmerUi/>
-  }
-
-  return (
+  return listOfRestaurants.length === 0 ? (
+    <ShimmerUi/>
+  ) : (
     <div className="body">
       <div className="filter">
         <button
