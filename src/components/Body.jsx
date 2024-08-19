@@ -1,6 +1,6 @@
-import Restaurantcard from "./Restaurantcard";
-
 import { useEffect, useState } from "react";
+
+import Restaurantcard from "./Restaurantcard";
 import ShimmerUi from "./ShimmerUi";
 
 const Body = () => {
@@ -15,15 +15,16 @@ const Body = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9352403&lng=77.624532&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
+    const dataOfRes =
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants;
 
     console.log(json);
-    setListOfRestaurants(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+    setListOfRestaurants(dataOfRes);
   };
 
   return listOfRestaurants.length === 0 ? (
-    <ShimmerUi/>
+    <ShimmerUi />
   ) : (
     <div className="body">
       <div className="filter">
@@ -31,7 +32,7 @@ const Body = () => {
           className="filter-btn"
           onClick={() => {
             const filteredData = listOfRestaurants.filter(
-              (res) => res.info.avgRating < 4.4
+              (res) => res.info.avgRating > 4.2
             );
             setListOfRestaurants(filteredData);
           }}
