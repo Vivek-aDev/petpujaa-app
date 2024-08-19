@@ -2,7 +2,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* border: 1px solid black; */
+  position: sticky;
+  top: 0;
 }
 
 .logo {
@@ -11,6 +12,7 @@
 
 .nav-items {
   margin: 30px;
+  display: flex;
 }
 
 .nav-items ul {
@@ -78,16 +80,17 @@
   justify-content: center;
 }
 
-.btn-name {
-  padding: 0 40px;
+.btn {
+  padding: 20px;
   font-size: large;
-  font-weight: 600;
+  font-weight: 500;
   background-color: #f0f0f0;
   border: none;
   border-radius: 10px;
+  margin: 10px;
 }
 
-.btn-name:hover {
+.btn:hover {
   background-color: #eb8a8a;
   
 }

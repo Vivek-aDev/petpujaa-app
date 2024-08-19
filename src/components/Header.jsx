@@ -4,11 +4,11 @@ import { LOGO_URL } from "../utils/constants";
 const Header = () => {
   const [btnName, setBtnName] = useState("login");
   console.log("rendered");
-  
+
   return (
     <div className="header">
       <div className="logo-container">
-        <img className="logo" src={LOGO_URL} alt="" />
+        <img className="logo" src={LOGO_URL} alt="app logo" />
       </div>
       <div className="nav-items">
         <ul>
@@ -16,15 +16,15 @@ const Header = () => {
           <li>About us</li>
           <li>Contact us</li>
           <li>Cart</li>
-          <button
-            className="btn-name"
-            onClick={() => {
-              btnName === "login" ? setBtnName("logout") : setBtnName("login")
-            }}
-          >
-            {btnName}
-          </button>
         </ul>
+        <button
+          className="btn"
+          onClick={() => {
+            btnName === "login" ? setBtnName("logout") : setBtnName("login");
+          }}
+        >
+          {btnName}
+        </button>
       </div>
     </div>
   );
