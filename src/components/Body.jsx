@@ -5,7 +5,7 @@ import ShimmerUi from "./ShimmerUi";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
-  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([])
 
   const [searchText, setSearchText] = useState("");
 
@@ -26,7 +26,7 @@ const Body = () => {
 
     console.log(json);
     setListOfRestaurants(dataOfRes);
-    setFilteredRestaurants(dataOfRes);
+    setFilteredRestaurants(dataOfRes)
   };
 
   return listOfRestaurants.length === 0 ? (
