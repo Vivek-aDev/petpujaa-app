@@ -4,14 +4,13 @@ import { Link } from "react-router-dom";
 import Restaurantcard from "./Restaurantcard";
 import ShimmerUi from "./ShimmerUi";
 import { RES_LIST } from "../utils/constants";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
   const [searchText, setSearchText] = useState("");
-
-  // console.log("Body Rendered");
 
   useEffect(() => {
     fetchData();
@@ -24,10 +23,12 @@ const Body = () => {
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
 
-    // console.log(json);
     setListOfRestaurants(dataOfRes);
     setFilteredRestaurants(dataOfRes);
   };
+
+  const onlineStatus = useOnlineStatus();
+  if (onlineStatus === false) return <h1>your are offline😶‍🌫️</h1>;
 
   return listOfRestaurants.length === 0 ? (
     <ShimmerUi />
@@ -41,13 +42,11 @@ const Body = () => {
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
-              // console.log(searchText);
             }}
           />
           <button
             className="search-btn"
             onClick={() => {
-              // console.log(searchText);
               const searchedRestaurant = listOfRestaurants.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText)
               );
