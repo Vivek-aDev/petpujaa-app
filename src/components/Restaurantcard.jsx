@@ -4,7 +4,7 @@ const styleResCard = {
   backgroundColor: "#f0f0f0",
 };
 
-const Restaurantcard = (props) => {
+const RestaurantCard = (props) => {
   const { resData } = props;
   const { id, cloudinaryImageId, name, cuisines, avgRating, costForTwo } =
     resData?.info;
@@ -21,4 +21,4 @@ const Restaurantcard = (props) => {
   );
 };
 
-export default Restaurantcard;
+export default RestaurantCard;
