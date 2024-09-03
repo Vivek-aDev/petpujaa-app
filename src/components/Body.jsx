@@ -64,10 +64,10 @@ const Body = () => {
             onChange={(e) => {
               const filterValue = e.target.value;
               if (filterValue === "top-rated") {
-                const filteredRes = listOfRestaurants.filter(
-                  (res) => res.info.avgRating > 4.2
+                const sortedRes = [...listOfRestaurants].sort(
+                  (a, b) => b.info.avgRating - a.info.avgRating
                 );
-                setFilteredRestaurants(filteredRes);
+                setFilteredRestaurants(sortedRes);
               } else {
                 setFilteredRestaurants(listOfRestaurants);
               }
@@ -75,7 +75,6 @@ const Body = () => {
           >
             <option value="">All Restaurants</option>
             <option value="top-rated">Top Rated Restaurants</option>
-            {/* Add more filter options here */}
           </select>
         </div>
       </div>
