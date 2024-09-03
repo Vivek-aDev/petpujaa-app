@@ -33,19 +33,20 @@ const Body = () => {
   return listOfRestaurants.length === 0 ? (
     <ShimmerUi />
   ) : (
-    <div className="body">
-      <div className="filter">
-        <div className="search-container">
+    <div className="flex flex-col items-center justify-center p-4">
+      <div className="w-full max-w-3xl mb-6">
+        <div className="flex items-center space-x-2 mb-4">
           <input
-            className="search-box"
+            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             type="text"
             value={searchText}
+            placeholder="Search for a restaurant..."
             onChange={(e) => {
               setSearchText(e.target.value);
             }}
           />
           <button
-            className="search-btn"
+            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
             onClick={() => {
               const searchedRestaurant = listOfRestaurants.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText)
@@ -57,26 +58,38 @@ const Body = () => {
           </button>
         </div>
 
-        {/* filtered Restaurants according to stars rating */}
-        <button
-          className="filter-btn"
-          onClick={() => {
-            const filteredRes = listOfRestaurants.filter(
-              (res) => res.info.avgRating > 4.2
-            );
-            setListOfRestaurants(filteredRes);
-          }}
-        >
-          Top rated Restaurants
-        </button>
+        <div className="flex justify-end space-x-2">
+          <select
+            className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            onChange={(e) => {
+              const filterValue = e.target.value;
+              if (filterValue === "top-rated") {
+                const filteredRes = listOfRestaurants.filter(
+                  (res) => res.info.avgRating > 4.2
+                );
+                setFilteredRestaurants(filteredRes);
+              } else {
+                setFilteredRestaurants(listOfRestaurants);
+              }
+            }}
+          >
+            <option value="">All Restaurants</option>
+            <option value="top-rated">Top Rated Restaurants</option>
+            {/* Add more filter options here */}
+          </select>
+        </div>
       </div>
-      <div className="res-container">
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
         {filteredRestaurants.map((restaurant) => (
           <Link
             key={restaurant?.info?.id}
             to={"/restaurants/" + restaurant?.info?.id}
+            className="block"
           >
-            <Restaurantcard resData={restaurant} />
+            <div>
+              <Restaurantcard resData={restaurant} />
+            </div>
           </Link>
         ))}
       </div>

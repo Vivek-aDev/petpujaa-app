@@ -26,7 +26,7 @@ const Header = () => {
           </li>
           <li>
             <Link
-              className="hover:text-yellow-400 transition duration-300"
+              className="hover:text-blue-400 transition duration-300"
               to="/"
             >
               Home
@@ -34,7 +34,7 @@ const Header = () => {
           </li>
           <li>
             <Link
-              className="hover:text-yellow-400 transition duration-300"
+              className="hover:text-blue-400 transition duration-300"
               to="/about"
             >
               About us
@@ -42,7 +42,7 @@ const Header = () => {
           </li>
           <li>
             <Link
-              className="hover:text-yellow-400 transition duration-300"
+              className="hover:text-blue-400 transition duration-300"
               to="/grocery"
             >
               Grocery
@@ -50,7 +50,7 @@ const Header = () => {
           </li>
           <li>
             <Link
-              className="hover:text-yellow-400 transition duration-300"
+              className="hover:text-blue-400 transition duration-300"
               to="/contact"
             >
               Contact us
@@ -64,7 +64,7 @@ const Header = () => {
           Cart
         </p>
         <button
-          className="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded transition duration-300"
+          className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition duration-300"
           onClick={() => {
             setBtnName(btnName === "login" ? "logout" : "login");
           }}
