@@ -17,8 +17,16 @@ const RestaurantCard = (props) => {
         alt={name}
       />
       <div className="mt-4">
-        <h4 className="text-lg font-semibold text-gray-800">{name}</h4>
-        <h3 className="text-gray-600 text-sm mt-2">{cuisines.join(", ")}</h3>
+        <h4 className="text-lg font-semibold text-gray-800">
+          {name.split(" ").length > 3
+            ? name.split(" ").slice(0, 3).join(" ") + "..."
+            : name}
+        </h4>
+        <h3 className="text-gray-600 text-sm mt-2">
+          {cuisines.length > 3
+            ? cuisines.slice(0, 3).join(", ") + "..."
+            : cuisines.join(", ")}
+        </h3>
         <div className="flex justify-between items-center mt-2">
           <h4 className="text-yellow-500 font-bold">{avgRating} ⭐</h4>
           <h4 className="text-gray-800">{costForTwo}</h4>
