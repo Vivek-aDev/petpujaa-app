@@ -5,10 +5,6 @@ const ShimmerUi = () => {
       <div className="shimer-card">Loading...</div>
       <div className="shimer-card">Loading...</div>
       <div className="shimer-card">Loading...</div>
-      <div className="shimer-card">Loading...</div>
-      <div className="shimer-card">Loading...</div>
-      <div className="shimer-card">Loading...</div>
-      <div className="shimer-card">Loading...</div>
     </div>
   );
 };
