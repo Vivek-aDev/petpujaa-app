@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import Restaurantcard from "./Restaurantcard";
+import Restaurantcard, { withPromotedLabel } from "./Restaurantcard";
 import ShimmerUi from "./ShimmerUi";
 import { RES_LIST } from "../utils/constants";
 import useOnlineStatus from "../utils/useOnlineStatus";
@@ -9,28 +9,53 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-
   const [searchText, setSearchText] = useState("");
+  const [page, setPage] = useState(1); // Track the current page
+  const [loading, setLoading] = useState(false); // Track loading state
+
+  const RestaurantCardPromoted = withPromotedLabel(Restaurantcard);
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchData(page);
+  }, [page]);
 
-  const fetchData = async () => {
-    const data = await fetch(RES_LIST);
+  const fetchData = async (page) => {
+    setLoading(true);
+    const data = await fetch(`${RES_LIST}?page=${page}`); // Adjust your API call if needed
     const json = await data.json();
     const dataOfRes =
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
 
-    setListOfRestaurants(dataOfRes);
-    setFilteredRestaurants(dataOfRes);
+    setListOfRestaurants((prevRestaurants) => [
+      ...prevRestaurants,
+      ...dataOfRes,
+    ]);
+    setFilteredRestaurants((prevRestaurants) => [
+      ...prevRestaurants,
+      ...dataOfRes,
+    ]);
+    setLoading(false);
   };
 
-  const onlineStatus = useOnlineStatus();
-  if (onlineStatus === false) return <h1>your are offline😶‍🌫️</h1>;
+  const handleScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop + 100 >=
+      document.documentElement.scrollHeight
+    ) {
+      setPage((prevPage) => prevPage + 1);
+    }
+  };
 
-  return listOfRestaurants.length === 0 ? (
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const onlineStatus = useOnlineStatus();
+  if (onlineStatus === false) return <h1>You are offline😶‍🌫️</h1>;
+
+  return listOfRestaurants.length === 0 && !loading ? (
     <ShimmerUi />
   ) : (
     <div className="flex flex-col items-center justify-center p-4">
@@ -78,7 +103,6 @@ const Body = () => {
           </select>
         </div>
       </div>
-
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
         {filteredRestaurants.map((restaurant) => (
           <Link
@@ -87,11 +111,16 @@ const Body = () => {
             className="block"
           >
             <div>
-              <Restaurantcard resData={restaurant} />
+              {restaurant.info.promoted ? (
+                <RestaurantCardPromoted resData={restaurant} />
+              ) : (
+                <Restaurantcard resData={restaurant} />
+              )}
             </div>
           </Link>
         ))}
       </div>
+      {loading && <ShimmerUi />}
     </div>
   );
 };
