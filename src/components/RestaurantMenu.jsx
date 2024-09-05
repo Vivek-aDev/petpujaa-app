@@ -9,6 +9,8 @@ const RestaurantMenu = () => {
   const { resId } = useParams();
   const [showIndex, setShowIndex] = useState(null);
 
+  const dummy = "Dummy data for (Props Drilling) example"
+
   const resInfo = useRestaurantMenu(resId);
 
   if (resInfo === null) return <ShimmerUi />;
@@ -55,6 +57,7 @@ const RestaurantMenu = () => {
             data={category?.card?.card}
             showItems={index === showIndex ? true : false}
             setShowIndex={() => handleAccordionclick(index)}
+            dummy={dummy}
           />
         ))}
       </div>
