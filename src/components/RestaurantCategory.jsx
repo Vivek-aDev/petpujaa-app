@@ -2,11 +2,9 @@ import { useState } from "react";
 import ItemList from "./ItemList";
 import { RiArrowDownSLine } from "react-icons/ri";
 
-const RestaurantCategory = ({ data }) => {
-  const [showItems, setShowItems] = useState(false);
+const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
   function handleClick() {
-    console.log("clicked");
-    setShowItems(!showItems);
+    setShowIndex(showItems)
   }
 
   return (
