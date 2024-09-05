@@ -14,9 +14,6 @@ const RestaurantMenu = () => {
   const { name, cuisines, costForTwoMessage, cloudinaryImageId } =
     resInfo?.cards[2]?.card?.card?.info;
 
-  const { itemCards } =
-    resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
-
   const categories =
     resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
       (c) =>
@@ -25,27 +22,33 @@ const RestaurantMenu = () => {
     );
 
   return (
-    <div className="rounded-lg p-6 max-w-3xl mx-auto">
-      <div className="flex justify-between">
-        <div>
-          <h1 className="text-2xl font-bold mb-2">{name}</h1>
-          <p className="text-lg text-gray-700">{cuisines.join(", ")}</p>
-          <p>
-            Rs- <span className="font-semibold">{costForTwoMessage}</span>
+    <div className="rounded-lg p-6 max-w-3xl mx-auto bg-white shadow-lg">
+      <div className="flex justify-between items-start gap-6">
+        <div className="flex-1">
+          <h1 className="text-3xl font-bold mb-2 text-gray-800">{name}</h1>
+          <p className="text-lg text-gray-600 mb-1">{cuisines.join(", ")}</p>
+          <p className="text-gray-700">
+            Rs-{" "}
+            <span className="font-semibold text-gray-900">
+              {costForTwoMessage}
+            </span>
           </p>
         </div>
-        <div>
+        <div className="w-48 h-48">
           <img
             src={CDN_URL + cloudinaryImageId}
             alt={name}
-            className="w-full h-48 object-cover rounded-lg mb-4"
+            className="w-full h-full object-cover rounded-lg shadow-sm"
           />
         </div>
       </div>
 
-      <div>
+      <div className="mt-6">
         {categories.map((category) => (
-          <RestaurantCategory key={category?.card?.card?.title} data={category?.card?.card} />
+          <RestaurantCategory
+            key={category?.card?.card?.title}
+            data={category?.card?.card}
+          />
         ))}
       </div>
     </div>
