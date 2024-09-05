@@ -16,7 +16,6 @@ const RestaurantMenu = () => {
 
   const { itemCards } =
     resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
-  console.log(resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
 
   const categories =
     resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
@@ -26,7 +25,7 @@ const RestaurantMenu = () => {
     );
 
   return (
-    <div className="bg-white shadow-xl rounded-lg p-6 max-w-3xl mx-auto">
+    <div className="rounded-lg p-6 max-w-3xl mx-auto">
       <div className="flex justify-between">
         <div>
           <h1 className="text-2xl font-bold mb-2">{name}</h1>
