@@ -1,3 +1,4 @@
+import { useState, useState } from "react";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import ShimmerUi from "./ShimmerUi";
@@ -6,6 +7,7 @@ import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
+  const [showIndex, setShowIndex] = useState(null);
 
   const resInfo = useRestaurantMenu(resId);
 
@@ -20,6 +22,9 @@ const RestaurantMenu = () => {
         c.card?.card?.["@type"] ===
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     );
+
+  const handleAccordionclick = (index) =>
+    setShowIndex((prevIndex) => (prevIndex === index ? null : index));
 
   return (
     <div className="rounded-lg p-6 max-w-3xl mx-auto bg-white shadow-lg">
@@ -44,10 +49,12 @@ const RestaurantMenu = () => {
       </div>
 
       <div className="mt-6">
-        {categories.map((category) => (
+        {categories.map((category, index) => (
           <RestaurantCategory
             key={category?.card?.card?.title}
             data={category?.card?.card}
+            showItems={index === showIndex ? true : false}
+            setShowIndex={() => handleAccordionclick(index)}
           />
         ))}
       </div>
