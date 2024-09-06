@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { CDN_URL } from "../utils/constants";
+import UserContext from "../utils/context/UseContext";
 
 const styleResCard = {
   backgroundColor: "#f0f0f0",
@@ -8,6 +10,8 @@ const RestaurantCard = (props) => {
   const { resData } = props;
   const { id, cloudinaryImageId, name, cuisines, avgRating, costForTwo } =
     resData?.info;
+
+  const { loggedInUser } = useContext(UserContext);
 
   return (
     <div className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 p-4">
@@ -32,6 +36,7 @@ const RestaurantCard = (props) => {
           <h4 className="text-gray-800">{costForTwo}</h4>
         </div>
         <p className="text-xs text-gray-500 mt-2">ID: {id}</p>
+        <p className="font-semibold font-mono">User: {loggedInUser}</p>
       </div>
     </div>
   );
