@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
 import Logo from "../assets/food_icon.png";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { LiaShoppingCartSolid } from "react-icons/lia";
+import UserContext from "../utils/context/UseContext";
 
 const Header = () => {
   const [btnName, setBtnName] = useState("login");
   const onlineStatus = useOnlineStatus();
+
+  // const data = useContext(UserContext)
+  // console.log(data.loggedInUser);
+  const { loggedInUser } = useContext(UserContext);
 
   return (
     <div className="flex flex-col md:flex-row justify-between items-center p-4 bg-gray-800 text-white shadow-lg">
@@ -71,6 +76,7 @@ const Header = () => {
         >
           {btnName}
         </button>
+        <p className="font-mono font-semibold">{loggedInUser}</p>
       </div>
     </div>
   );
