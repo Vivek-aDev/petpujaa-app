@@ -2,9 +2,9 @@ import { useState } from "react";
 import ItemList from "./ItemList";
 import { RiArrowDownSLine } from "react-icons/ri";
 
-const RestaurantCategory = ({ data, showItems, setShowIndex, dummy }) => {
+const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
   function handleClick() {
-    setShowIndex(showItems)
+    setShowIndex(showItems);
   }
 
   return (
@@ -23,7 +23,7 @@ const RestaurantCategory = ({ data, showItems, setShowIndex, dummy }) => {
             }`}
           />
         </div>
-        {showItems && <ItemList items={data?.itemCards} dummy={dummy}/>}
+        {showItems && <ItemList items={data?.itemCards} />}
       </div>
     </div>
   );

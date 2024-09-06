@@ -1,10 +1,6 @@
 import { ITEM_IMG } from "../utils/constants";
 
-const ItemList = ({ items, dummy }) => {
-  // console.log(items);
-  console.log(dummy);
-  
-
+const ItemList = ({ items }) => {
   return (
     <div>
       {items.map((item) => (
