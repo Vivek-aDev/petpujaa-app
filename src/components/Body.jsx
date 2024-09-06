@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import Restaurantcard, { withPromotedLabel } from "./Restaurantcard";
 import ShimmerUi from "./ShimmerUi";
 import { RES_LIST } from "../utils/constants";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/context/UseContext";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -55,6 +56,8 @@ const Body = () => {
   const onlineStatus = useOnlineStatus();
   if (onlineStatus === false) return <h1>You are offline😶‍🌫️</h1>;
 
+  const { loggedInUser, setUserName } = useContext(UserContext);
+
   return listOfRestaurants.length === 0 && !loading ? (
     <ShimmerUi />
   ) : (
@@ -101,6 +104,14 @@ const Body = () => {
             <option value="">All Restaurants</option>
             <option value="top-rated">Top Rated Restaurants</option>
           </select>
+        </div>
+        <div>
+          <label className="font-medium">User Name:</label>
+          <input
+            className="m-2 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          />
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
