@@ -1,6 +1,15 @@
+import { useDispatch } from "react-redux";
 import { ITEM_IMG } from "../utils/constants";
+import { addItem } from "../utils/Store/Slices/cartSlice";
+// import appStore from "../utils/Store/appStore";
 
 const ItemList = ({ items }) => {
+  const dispatch = useDispatch();
+
+  const handleAddItem = (item) => {
+    dispatch(addItem(item));
+  };
+
   return (
     <div>
       {items.map((item) => (
@@ -31,7 +40,10 @@ const ItemList = ({ items }) => {
                 src={ITEM_IMG + item?.card?.info?.imageId}
                 alt={item?.card?.info?.name}
               />
-              <button className="absolute bg-green-700 text-white font-medium rounded-sm px-3 py-1 inset-x-2 bottom-2 hover:bg-green-600 transition duration-300">
+              <button
+                className="absolute bg-green-700 text-white font-medium rounded-sm px-3 py-1 inset-x-2 bottom-2 hover:bg-green-600 transition duration-300"
+                onClick={()=>handleAddItem(item)}
+              >
                 ADD
               </button>
             </div>

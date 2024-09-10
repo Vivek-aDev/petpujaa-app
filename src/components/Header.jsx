@@ -5,6 +5,7 @@ import Logo from "../assets/food_icon.png";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { LiaShoppingCartSolid } from "react-icons/lia";
 import UserContext from "../utils/context/UseContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [btnName, setBtnName] = useState("login");
@@ -13,6 +14,10 @@ const Header = () => {
   // const data = useContext(UserContext)
   // console.log(data.loggedInUser);
   const { loggedInUser } = useContext(UserContext);
+
+  //subscribing to a store using selector
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
 
   return (
     <div className="flex flex-col md:flex-row justify-between items-center p-4 bg-gray-800 text-white shadow-lg">
@@ -66,7 +71,7 @@ const Header = () => {
       <div className="btn-container flex items-center space-x-4">
         <p className="flex items-center font-bold">
           <LiaShoppingCartSolid className="size-8 mr-2" />
-          Cart
+          Cart ({cartItems.length} items)
         </p>
         <button
           className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition duration-300"
