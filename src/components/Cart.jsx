@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import ItemList from "./ItemList";
 import { clearCart } from "../utils/Store/Slices/cartSlice";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
@@ -16,7 +17,11 @@ const Cart = () => {
         <div>
           <h1 className="text-3xl font-bold text-gray-800 mb-2">Your Cart</h1>
           <p className="text-lg text-gray-500">
-            Total: <span className="font-semibold text-red-500">{cartItems.length}</span> items
+            Total:{" "}
+            <span className="font-semibold text-red-500">
+              {cartItems.length}
+            </span>{" "}
+            items
           </p>
         </div>
         <button
@@ -30,9 +35,16 @@ const Cart = () => {
         {cartItems.length !== 0 ? (
           <ItemList items={cartItems} />
         ) : (
-          <h1 className="text-2xl font-semibold text-gray-500 flex items-center justify-center h-32">
-            😇 Add items to your cart
-          </h1>
+          <div className="text-center py-8 rounded-lg">
+            <h1 className="text-2xl font-semibold text-gray-600 flex items-center justify-center mb-4">
+              😇 Add items to your cart
+            </h1>
+            <Link to={"/"}>
+              <button className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-300 ease-in-out">
+                Home
+              </button>
+            </Link>
+          </div>
         )}
       </div>
     </div>
