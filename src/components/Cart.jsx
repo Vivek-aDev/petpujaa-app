@@ -1,8 +1,14 @@
+import { useSelector } from "react-redux";
+import ItemList from "./ItemList";
+
 const Cart = () => {
+  const cartItems = useSelector((store) => store.cart.items);
+
   return (
     <div>
-      <h1>This is the cart page</h1>
-      <h3>Add to cart items will show here</h3>
+      <h1>Cart</h1>
+      <p>total:- {cartItems.length} items</p>
+      <ItemList items={cartItems} />
     </div>
   );
 };
