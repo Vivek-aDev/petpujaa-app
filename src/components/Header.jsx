@@ -69,10 +69,10 @@ const Header = () => {
         </ul>
       </div>
       <div className="btn-container flex items-center space-x-4">
-        <p className="flex items-center font-bold">
+        <Link to={"/cart"} className="flex items-center font-bold">
           <LiaShoppingCartSolid className="size-8 mr-2" />
           Cart ({cartItems.length} items)
-        </p>
+        </Link>
         <button
           className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition duration-300"
           onClick={() => {
