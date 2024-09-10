@@ -31,9 +31,6 @@ const ItemList = ({ items }) => {
                 src={ITEM_IMG + item?.card?.info?.imageId}
                 alt={item?.card?.info?.name}
               />
-              <button className="absolute bg-green-700 text-white font-medium rounded-sm px-3 py-1 inset-x-2 bottom-2 hover:bg-green-600 transition duration-300">
-                ADD
-              </button>
             </div>
           </div>
         </div>
